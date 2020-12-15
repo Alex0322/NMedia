@@ -10,22 +10,22 @@
 
     <ImageView
         android:id="@+id/ivTitleIcon"
-        android:layout_width="68dp"
-        android:layout_height="54dp"
+        android:layout_width="46dp"
+        android:layout_height="41dp"
         android:contentDescription="@string/sTitleIcon"
         android:cropToPadding="false"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/ic_launcher_round" />
+        app:srcCompat="@drawable/ic_netology" />
 
     <TextView
         android:id="@+id/tvTitleAuthor"
         android:layout_width="0dp"
-        android:layout_height="23dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
         android:ellipsize="end"
         android:singleLine="true"
         android:text="@string/sTitleAuthor"
@@ -38,9 +38,10 @@
 
     <TextView
         android:id="@+id/tvTitleTime"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
+        android:layout_width="92dp"
+        android:layout_height="33dp"
         android:text="@string/sTitleTime"
+        app:layout_constraintBottom_toTopOf="@+id/tvPost"
         app:layout_constraintEnd_toEndOf="@+id/tvTitleAuthor"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/tvTitleAuthor"
@@ -50,6 +51,8 @@
         android:id="@+id/ivTitleMore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:contentDescription="@string/sTitleMore"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -57,10 +60,15 @@
 
     <TextView
         android:id="@+id/tvPost"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginTop="12dp"
+        android:layout_width="391dp"
+        android:layout_height="183dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
         android:text="@string/sPostBody"
+        app:layout_constraintBottom_toTopOf="@+id/ivFooterViewes"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvTitleTime" />
@@ -71,14 +79,16 @@
         android:layout_height="wrap_content"
         app:barrierDirection="bottom"
         app:constraint_referenced_ids="tvTitleTime"
-        tools:layout_editor_absoluteX="10dp" />
+        tools:layout_editor_absoluteX="10dp"
+        tools:layout_editor_absoluteY="62dp" />
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/br2"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         app:barrierDirection="bottom"
         app:constraint_referenced_ids="tvPost"
+        app:layout_constraintBottom_toBottomOf="parent"
         tools:layout_editor_absoluteX="10dp" />
 
     <ImageView
@@ -87,11 +97,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:contentDescription="@string/sFooterLikes"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvPost"
-        app:srcCompat="@drawable/ic_baseline_favorite_24" />
+        app:srcCompat="@drawable/ic_baseline_favorite_border_24" />
 
     <TextView
         android:id="@+id/tvFooterLikes"
@@ -144,7 +154,9 @@
         android:id="@+id/tvFooterViewes"
         android:layout_width="29dp"
         android:layout_height="18dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:gravity="center"
         android:text="@string/iFooterViewes"
         app:layout_constraintEnd_toEndOf="parent"
