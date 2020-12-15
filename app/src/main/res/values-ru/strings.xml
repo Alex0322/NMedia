@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">НМедиа</string>
-    <string name="hello">НМедиа!</string>
+    <string name="sAppName">НМедиа</string>
+    <string name="sTitleIcon">[ЗаголовокИконка]</string>
+    <string name="sTitleAuthor">[ЗаголовокАвтор]</string>
+    <string name="sTitleTime">[ЗаголовокВремя]</string>
+    <string name="sTitleMore">[ЗаголовокМеню]</string>
+    <string name="sPostBody">[Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст]</string>
+    <string name="iFooterShares">0</string>
+    <string name="iFooterViewes">0</string>
+    <string name="iFooterLikes">0</string>
+    <string name="sFooterLikes">FooterLikes</string>
+    <string name="sFooterViewes">FooterViewes</string>
+    <string name="sFooterShares">FooterShares</string>
 </resources>
