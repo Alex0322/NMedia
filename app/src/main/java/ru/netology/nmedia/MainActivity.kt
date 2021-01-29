@@ -2,6 +2,11 @@ package ru.netology.nmedia
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.viewModels
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import ru.netology.nmedia.databinding.ActivityMainBinding
 import kotlin.math.truncate
@@ -11,73 +16,54 @@ data class Post(
     val author: String,
     val content: String,
     val published: String,
-    var likedByMe: Boolean = false,
-    var likesCount: Int = 0,
-    var sharesCount: Int = 0
+    val likedByMe: Boolean,
+    val likesCount: Int,
+    val sharesCount: Int
 )
 
-class MainActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        val binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+interface PostRepository {
+    fun get(): LiveData<Post>
+    fun like()
+    fun share()
+}
 
-        val post = Post(1, "Нетология1", "Привет1", "Дата1", likesCount = 500, sharesCount = 999)
-        var s = getCountStr(1000)
-        s = getCountStr(1050)
-        s = getCountStr(1500)
-        s = getCountStr(9990)
-        s = getCountStr(10100)
-        s = getCountStr(15000)
-        s = getCountStr(900000)
-        s = getCountStr(1100000)
-        s = getCountStr(5865000)
-        s = getCountStr(5865324)
-
-        with(binding) {
-            tvTitleAuthor.text = post.author
-            tvTitleTime.text = post.published
-            tvPost.text = post.content
-            if (post.likedByMe) {
-                ivFooterLikes?.setImageResource(R.drawable.ic_baseline_favorite_24)
-            }
-            tvFooterLikes.text = post.likesCount.toString()
-            tvFooterShares.text = post.sharesCount.toString()
-
-            clMain.setOnClickListener {
-                var s = 1
-            }
-
-            ivFooterLikes.setOnClickListener {
-                var t = 1
-            }
-
-            ivTitleIcon.setOnClickListener {
-                var t = 1
-            }
-
-            ivFooterLikes.setOnClickListener {
-                post.likedByMe = !post.likedByMe
-                ivFooterLikes.setImageResource(
-                    if(post.likedByMe) {
-                        post.likesCount++
-                        R.drawable.ic_baseline_favorite_24
-                    } else {
-                        if (post.likesCount > 0)
-                            post.likesCount--
-                        R.drawable.ic_baseline_favorite_border_24
-                    }
-                )
-                tvFooterLikes.text = post.likesCount.toString()
-            }
-
-            ivFooterShares.setOnClickListener {
-                tvFooterShares.text = getCountStr(++post.sharesCount)
-            }
-        }
-        
+class PostRepositoryInMemoryImpl : PostRepository {
+    private var post = Post(
+        id = 1,
+        author = "Автор1",
+        content = "Текст1",
+        published = "Дата1",
+        likedByMe = true,
+        likesCount = 1000,
+        sharesCount = 999
+    )
+    private val data = MutableLiveData(post)
+    override fun get(): LiveData<Post> = data
+    override fun like() {
+        val newLikesCount =
+            if (!post.likedByMe)
+                post.likesCount + 1
+            else
+                if (post.likesCount > 0)
+                    post.likesCount - 1
+                else
+                    post.likesCount
+        post = post.copy(
+            likedByMe = !post.likedByMe,
+            likesCount = newLikesCount)
+        data.value = post
     }
+    override fun share(){
+        post = post.copy(sharesCount = post.sharesCount + 10)
+        data.value = post
+    }
+}
 
+class PostViewModel : ViewModel() {
+    private val repository: PostRepository = PostRepositoryInMemoryImpl()
+    val data = repository.get()
+    fun like() = repository.like()
+    fun share() = repository.share()
     fun getCountStr(count: Int): String {
         return when (count) {
             in 0..999 -> count.toString() //100
@@ -87,4 +73,36 @@ class MainActivity : AppCompatActivity() {
             else -> (count / 1000000).toString() + "M" //1.1M
         }
     }
+}
+
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        val viewModel: PostViewModel by viewModels()
+        viewModel.data.observe(this, Observer { post ->
+            with(binding) {
+                tvTitleAuthor.text = post.author
+                tvTitleTime.text = post.published
+                tvPost.text = post.content
+                ivFooterLikes.setImageResource(
+                    if (post.likedByMe) R.drawable.ic_baseline_favorite_24 else R.drawable.ic_baseline_favorite_border_24
+                )
+                tvFooterLikes.text = viewModel.getCountStr(post.likesCount)
+                tvFooterShares.text = viewModel.getCountStr(post.sharesCount)
+            }
+        })
+
+        binding.ivFooterLikes.setOnClickListener {
+            viewModel.like()
+        }
+
+        binding.ivFooterShares.setOnClickListener {
+            viewModel.share()
+        }
+
+    }
+
 }
