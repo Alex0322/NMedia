@@ -14,17 +14,7 @@ data class Post(
     var likedByMe: Boolean = false,
     var likesCount: Int = 0,
     var sharesCount: Int = 0
-) {
-    fun getCountStr(count: Int): String {
-        return when (count) {
-            in 0..999 -> count.toString() //100
-            in 1000..1099 -> "1K"
-            in 1100..9999 -> (truncate(count.toDouble() / 1000 * 10) / 10).toString() + "K" //1.1K
-            in 10000..999999 -> (count / 1000).toString() + "K" //10K
-            else -> (count / 1000000).toString() + "M" //1.1M
-        }
-    }
-}
+)
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,16 +23,16 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val post = Post(1, "Нетология1", "Привет1", "Дата1", likesCount = 500, sharesCount = 999)
-        var s = post.getCountStr(1000)
-        s = post.getCountStr(1050)
-        s = post.getCountStr(1500)
-        s = post.getCountStr(9990)
-        s = post.getCountStr(10100)
-        s = post.getCountStr(15000)
-        s = post.getCountStr(900000)
-        s = post.getCountStr(1100000)
-        s = post.getCountStr(5865000)
-        s = post.getCountStr(5865324)
+        var s = getCountStr(1000)
+        s = getCountStr(1050)
+        s = getCountStr(1500)
+        s = getCountStr(9990)
+        s = getCountStr(10100)
+        s = getCountStr(15000)
+        s = getCountStr(900000)
+        s = getCountStr(1100000)
+        s = getCountStr(5865000)
+        s = getCountStr(5865324)
 
         with(binding) {
             tvTitleAuthor.text = post.author
@@ -53,6 +43,18 @@ class MainActivity : AppCompatActivity() {
             }
             tvFooterLikes.text = post.likesCount.toString()
             tvFooterShares.text = post.sharesCount.toString()
+
+            clMain.setOnClickListener {
+                var s = 1
+            }
+
+            ivFooterLikes.setOnClickListener {
+                var t = 1
+            }
+
+            ivTitleIcon.setOnClickListener {
+                var t = 1
+            }
 
             ivFooterLikes.setOnClickListener {
                 post.likedByMe = !post.likedByMe
@@ -70,9 +72,19 @@ class MainActivity : AppCompatActivity() {
             }
 
             ivFooterShares.setOnClickListener {
-                tvFooterShares.text = post.getCountStr(++post.sharesCount)
+                tvFooterShares.text = getCountStr(++post.sharesCount)
             }
         }
         
+    }
+
+    fun getCountStr(count: Int): String {
+        return when (count) {
+            in 0..999 -> count.toString() //100
+            in 1000..1099 -> "1K"
+            in 1100..9999 -> (truncate(count.toDouble() / 1000 * 10) / 10).toString() + "K" //1.1K
+            in 10000..999999 -> (count / 1000).toString() + "K" //10K
+            else -> (count / 1000000).toString() + "M" //1.1M
+        }
     }
 }
