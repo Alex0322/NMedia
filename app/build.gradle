@@ -36,6 +36,7 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
 }
 
 android.defaultConfig.vectorDrawables.useSupportLibrary = true
@@ -56,6 +57,8 @@ dependencies {
 apply plugin: 'kotlin-kapt'
 
 dependencies {
+
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
     def lifecycle_version = "2.2.0"
     def arch_version = "2.1.0"
 

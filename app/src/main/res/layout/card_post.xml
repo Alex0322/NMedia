@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp">
+
+    <ImageView
+        android:id="@+id/ivTitleIcon"
+        android:layout_width="46dp"
+        android:layout_height="41dp"
+        android:contentDescription="@string/sTitleIcon"
+        android:cropToPadding="false"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_netology" />
+
+    <TextView
+        android:id="@+id/tvTitleAuthor"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:text="@string/sTitleAuthor"
+        app:layout_constraintBottom_toTopOf="@+id/tvTitleTime"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.466"
+        app:layout_constraintStart_toEndOf="@+id/ivTitleIcon"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/tvTitleTime"
+        android:layout_width="92dp"
+        android:layout_height="33dp"
+        android:text="@string/sTitleTime"
+        app:layout_constraintBottom_toTopOf="@+id/tvPost"
+        app:layout_constraintEnd_toEndOf="@+id/tvTitleAuthor"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/tvTitleAuthor"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitleAuthor" />
+
+    <ImageView
+        android:id="@+id/ivTitleMore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:contentDescription="@string/sTitleMore"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_more_vert_24" />
+
+    <TextView
+        android:id="@+id/tvPost"
+        android:layout_width="391dp"
+        android:layout_height="183dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:text="@string/sPostBody"
+        app:layout_constraintBottom_toTopOf="@+id/ivFooterViewes"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitleTime" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/br1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="tvTitleTime"
+        tools:layout_editor_absoluteX="10dp"
+        tools:layout_editor_absoluteY="62dp" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/br2"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="tvPost"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="10dp" />
+
+    <ImageView
+        android:id="@+id/ivFooterLikes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@string/sFooterLikes"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPost"
+        app:srcCompat="@drawable/ic_baseline_favorite_border_24" />
+
+    <TextView
+        android:id="@+id/tvFooterLikes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:text="@string/iFooterLikes"
+        app:layout_constraintBottom_toBottomOf="@+id/ivFooterLikes"
+        app:layout_constraintStart_toEndOf="@+id/ivFooterLikes"
+        app:layout_constraintTop_toTopOf="@+id/ivFooterLikes"
+        app:layout_constraintVertical_bias="0.6" />
+
+    <ImageView
+        android:id="@+id/ivFooterShares"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:contentDescription="@string/sFooterShares"
+        app:layout_constraintBottom_toBottomOf="@+id/tvFooterLikes"
+        app:layout_constraintStart_toEndOf="@+id/tvFooterLikes"
+        app:layout_constraintTop_toTopOf="@+id/tvFooterLikes"
+        app:layout_constraintVertical_bias="0.6"
+        app:srcCompat="@drawable/ic_baseline_share_24" />
+
+    <TextView
+        android:id="@+id/tvFooterShares"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:text="@string/iFooterShares"
+        app:layout_constraintBottom_toBottomOf="@+id/ivFooterShares"
+        app:layout_constraintStart_toEndOf="@+id/ivFooterShares"
+        app:layout_constraintTop_toTopOf="@+id/ivFooterShares"
+        app:layout_constraintVertical_bias="0.4" />
+
+    <ImageView
+        android:id="@+id/ivFooterViewes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/sFooterViewes"
+        app:layout_constraintBottom_toBottomOf="@+id/tvFooterViewes"
+        app:layout_constraintEnd_toStartOf="@+id/tvFooterViewes"
+        app:layout_constraintTop_toTopOf="@+id/tvFooterViewes"
+        app:srcCompat="@drawable/ic_baseline_remove_red_eye_24" />
+
+    <TextView
+        android:id="@+id/tvFooterViewes"
+        android:layout_width="29dp"
+        android:layout_height="18dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:gravity="center"
+        android:text="@string/iFooterViewes"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPost" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
