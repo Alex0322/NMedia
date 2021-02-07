@@ -2,17 +2,18 @@ package ru.netology.nmedia.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.PopupMenu
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import ru.netology.nmedia.viewmodel.PostViewModel
 import ru.netology.nmedia.R
 import ru.netology.nmedia.databinding.CardPostBinding
 import ru.netology.nmedia.dto.Post
+import ru.netology.nmedia.util.AndroidUtils
 
 class PostDiffCallback : DiffUtil.ItemCallback<Post>() {
     override fun areItemsTheSame(oldItem: Post, newItem: Post): Boolean {
-        return oldItem.id == newItem.id
+        return oldItem.nId == newItem.nId
     }
 
     override fun areContentsTheSame(oldItem: Post, newItem: Post): Boolean {
@@ -20,18 +21,19 @@ class PostDiffCallback : DiffUtil.ItemCallback<Post>() {
     }
 }
 
-typealias OnLikeListener = (post: Post) -> Unit
-typealias OnShareListener = (post: Post) -> Unit
+interface OnInteractionListener {
+    fun onLike(post: Post) {}
+    fun onShare(post: Post) {}
+    fun onEdit(post: Post) {}
+    fun onRemove(post: Post) {}
+}
 
-class PostsAdapter(
-    private val onLikeListener: OnLikeListener,
-    private val onShareListener: OnShareListener
-) :
+class PostsAdapter(private val onInteractionListener: OnInteractionListener) :
     ListAdapter<Post, PostViewHolder>(PostDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
         val binding = CardPostBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return PostViewHolder(binding, onLikeListener, onShareListener)
+        return PostViewHolder(binding, onInteractionListener)
     }
 
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
@@ -43,24 +45,44 @@ class PostsAdapter(
 
 class PostViewHolder(
     private val binding: CardPostBinding,
-    private val onLikeListener: OnLikeListener,
-    private val onShareListener: OnShareListener
+    private val onInteractionListener: OnInteractionListener
 ) : RecyclerView.ViewHolder(binding.root) {
+
     fun bind(post: Post) {
         binding.apply {
-            tvTitleAuthor.text = post.author
-            tvTitleTime.text = post.published
-            tvPost.text = post.content
-            ivFooterLikes.setImageResource(
-                if (post.likedByMe) R.drawable.ic_baseline_favorite_24 else R.drawable.ic_baseline_favorite_border_24
+            tvAuthor.text = post.sAuthor
+            tvTime.text = post.sPublished
+            tvPost.text = post.sContent
+            ivLikes.setImageResource(
+                if (post.isLikedByMe) R.drawable.ic_baseline_favorite_24 else R.drawable.ic_baseline_favorite_border_24
             )
-            tvFooterLikes.text = PostViewModel.getCountStr(post.likesCount)
-            tvFooterShares.text = PostViewModel.getCountStr(post.sharesCount)
-            ivFooterLikes.setOnClickListener {
-                onLikeListener(post)
+
+            ivMenu.setOnClickListener {
+                PopupMenu(it.context, it).apply {
+                    inflate(R.menu.options_post)
+                    setOnMenuItemClickListener { item ->
+                        when (item.itemId) {
+                            R.id.miRemove -> {
+                                onInteractionListener.onRemove(post)
+                                true
+                            }
+                            R.id.miEdit -> {
+                                onInteractionListener.onEdit(post)
+                                true
+                            }
+                            else -> false
+                        }
+                    }
+                }.show()
+            }
+
+            tvLikes.text = AndroidUtils.getCountStr(post.nLikesCount)
+            tvShares.text = AndroidUtils.getCountStr(post.nSharesCount)
+            ivLikes.setOnClickListener {
+                onInteractionListener.onLike(post)
             }
             ivFooterShares.setOnClickListener {
-                onShareListener(post)
+                onInteractionListener.onShare(post)
             }
         }
     }

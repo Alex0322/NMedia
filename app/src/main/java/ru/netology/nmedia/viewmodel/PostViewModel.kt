@@ -1,28 +1,49 @@
 package ru.netology.nmedia.viewmodel
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import ru.netology.nmedia.dto.Post
 import ru.netology.nmedia.repository.PostRepository
 import ru.netology.nmedia.repository.PostRepositoryInMemoryImpl
-import kotlin.math.truncate
 
-open class PostViewModel : ViewModel() {
+private val empty = Post(
+    nId = 0,
+    sContent = "",
+    sAuthor = "",
+    isLikedByMe = false,
+    sPublished = "",
+    nLikesCount = 0,
+    nSharesCount = 0
+)
+
+class PostViewModel : ViewModel() {
 
     private val repository: PostRepository = PostRepositoryInMemoryImpl()
-    val data = repository.getAll()
+    val ldPosts = repository.getAll()
+    val ldEdited = MutableLiveData(empty)
 
-    fun likeById(id: Long) = repository.likeById(id)
+    fun likeById(nId: Long) = repository.likeById(nId)
 
-    fun shareById(id: Long) = repository.shareById(id)
+    fun shareById(nId: Long) = repository.shareById(nId)
 
-    companion object {
-        fun getCountStr(count: Int): String {
-            return when (count) {
-                in 0..999 -> count.toString() //100
-                in 1000..1099 -> "1K"
-                in 1100..9999 -> (truncate(count.toDouble() / 1000 * 10) / 10).toString() + "K" //1.1K
-                in 10000..999999 -> (count / 1000).toString() + "K" //10K
-                else -> (count / 1000000).toString() + "M" //1.1M
-            }
+    fun removeById(nId: Long) = repository.removeById(nId)
+
+    fun save (){
+        ldEdited.value?.let {
+            repository.save(it)
         }
+        ldEdited.value = empty
+    }
+
+    fun edit(post: Post) {
+        ldEdited.value = post
+    }
+
+    fun changeContent(content: String) {
+        val text = content.trim()
+        if (ldEdited.value?.sContent == text) {
+            return
+        }
+        ldEdited.value = ldEdited.value?.copy(sContent = text)
     }
 }

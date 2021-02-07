@@ -18,7 +18,7 @@
         app:srcCompat="@drawable/ic_netology" />
 
     <TextView
-        android:id="@+id/tvTitleAuthor"
+        android:id="@+id/tvAuthor"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -28,7 +28,7 @@
         android:ellipsize="end"
         android:singleLine="true"
         android:text="@string/sTitleAuthor"
-        app:layout_constraintBottom_toTopOf="@+id/tvTitleTime"
+        app:layout_constraintBottom_toTopOf="@+id/tvTime"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.466"
         app:layout_constraintStart_toEndOf="@+id/ivTitleIcon"
@@ -36,18 +36,18 @@
         app:layout_constraintVertical_chainStyle="packed" />
 
     <TextView
-        android:id="@+id/tvTitleTime"
+        android:id="@+id/tvTime"
         android:layout_width="92dp"
         android:layout_height="33dp"
         android:text="@string/sTitleTime"
         app:layout_constraintBottom_toTopOf="@+id/tvPost"
-        app:layout_constraintEnd_toEndOf="@+id/tvTitleAuthor"
+        app:layout_constraintEnd_toEndOf="@+id/tvAuthor"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/tvTitleAuthor"
-        app:layout_constraintTop_toBottomOf="@+id/tvTitleAuthor" />
+        app:layout_constraintStart_toStartOf="@+id/tvAuthor"
+        app:layout_constraintTop_toBottomOf="@+id/tvAuthor" />
 
     <ImageView
-        android:id="@+id/ivTitleMore"
+        android:id="@+id/ivMenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -70,14 +70,14 @@
         app:layout_constraintBottom_toTopOf="@+id/ivFooterViewes"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvTitleTime" />
+        app:layout_constraintTop_toBottomOf="@+id/tvTime" />
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/br1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="bottom"
-        app:constraint_referenced_ids="tvTitleTime"
+        app:constraint_referenced_ids="tvTime"
         tools:layout_editor_absoluteX="10dp"
         tools:layout_editor_absoluteY="62dp" />
 
@@ -91,7 +91,7 @@
         tools:layout_editor_absoluteX="10dp" />
 
     <ImageView
-        android:id="@+id/ivFooterLikes"
+        android:id="@+id/ivLikes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -103,15 +103,15 @@
         app:srcCompat="@drawable/ic_baseline_favorite_border_24" />
 
     <TextView
-        android:id="@+id/tvFooterLikes"
+        android:id="@+id/tvLikes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:text="@string/iFooterLikes"
-        app:layout_constraintBottom_toBottomOf="@+id/ivFooterLikes"
-        app:layout_constraintStart_toEndOf="@+id/ivFooterLikes"
-        app:layout_constraintTop_toTopOf="@+id/ivFooterLikes"
+        app:layout_constraintBottom_toBottomOf="@+id/ivLikes"
+        app:layout_constraintStart_toEndOf="@+id/ivLikes"
+        app:layout_constraintTop_toTopOf="@+id/ivLikes"
         app:layout_constraintVertical_bias="0.6" />
 
     <ImageView
@@ -121,14 +121,14 @@
         android:layout_marginStart="4dp"
         android:layout_marginLeft="4dp"
         android:contentDescription="@string/sFooterShares"
-        app:layout_constraintBottom_toBottomOf="@+id/tvFooterLikes"
-        app:layout_constraintStart_toEndOf="@+id/tvFooterLikes"
-        app:layout_constraintTop_toTopOf="@+id/tvFooterLikes"
+        app:layout_constraintBottom_toBottomOf="@+id/tvLikes"
+        app:layout_constraintStart_toEndOf="@+id/tvLikes"
+        app:layout_constraintTop_toTopOf="@+id/tvLikes"
         app:layout_constraintVertical_bias="0.6"
         app:srcCompat="@drawable/ic_baseline_share_24" />
 
     <TextView
-        android:id="@+id/tvFooterShares"
+        android:id="@+id/tvShares"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"

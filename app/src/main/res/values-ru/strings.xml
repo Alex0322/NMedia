@@ -12,4 +12,8 @@
     <string name="sFooterLikes">FooterLikes</string>
     <string name="sFooterViewes">FooterViewes</string>
     <string name="sFooterShares">FooterShares</string>
+    <string name="sErrEmptyContent">Content cant be empty</string>
+    <string name="sCancel">Cancel</string>
+    <string name="sSave">Save</string>
+    <string name="sPostText">Post Text</string>
 </resources>
