@@ -5,14 +5,16 @@
     <string name="sTitleTime">[TitleTime]</string>
     <string name="sTitleMore">[TitleMenu]</string>
     <string name="sPostBody">[Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text]</string>
-    <string name="iFooterViewes">0</string>
-    <string name="iFooterLikes">0</string>
-    <string name="iFooterShares">0</string>
-    <string name="sFooterLikes">FooterLikes</string>
-    <string name="sFooterViewes">FooterViewes</string>
-    <string name="sFooterShares">FooterShares</string>
+    <string name="iViewes">0</string>
+    <string name="iLikes">0</string>
+    <string name="iShares">0</string>
+    <string name="sLikes">Likes</string>
+    <string name="sViewes">Viewes</string>
+    <string name="sShares">Shares</string>
     <string name="sErrEmptyContent">Content cant be empty</string>
     <string name="sCancel">Cancel</string>
     <string name="sSave">Save</string>
     <string name="sPostText">Post Text</string>
+    <string name="sLike">Like</string>
+    <string name="sMenu">Menu</string>
 </resources>

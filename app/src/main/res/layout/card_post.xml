@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -46,16 +45,17 @@
         app:layout_constraintStart_toStartOf="@+id/tvAuthor"
         app:layout_constraintTop_toBottomOf="@+id/tvAuthor" />
 
-    <ImageView
-        android:id="@+id/ivMenu"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/tbMenu"
+        style="@style/Widget.AppTheme.LikedCheckBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:contentDescription="@string/sTitleMore"
+        android:contentDescription="@string/sMenu"
+        app:icon="@drawable/ic_baseline_more_vert_24"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_baseline_more_vert_24" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvPost"
@@ -67,7 +67,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:text="@string/sPostBody"
-        app:layout_constraintBottom_toTopOf="@+id/ivFooterViewes"
+        app:layout_constraintBottom_toTopOf="@+id/ivViewes"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvTime" />
@@ -90,74 +90,51 @@
         app:layout_constraintBottom_toBottomOf="parent"
         tools:layout_editor_absoluteX="10dp" />
 
-    <ImageView
-        android:id="@+id/ivLikes"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/tbLikes"
+        style="@style/Widget.AppTheme.LikedCheckBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="16dp"
-        android:contentDescription="@string/sFooterLikes"
+        android:button="@drawable/ic_like_24dp"
+        android:checkable="true"
+        android:contentDescription="@string/sLike"
+        app:icon="@drawable/ic_like_24dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvPost"
-        app:srcCompat="@drawable/ic_baseline_favorite_border_24" />
+        tools:checked="true"
+        tools:text="XXX" />
 
-    <TextView
-        android:id="@+id/tvLikes"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/tbShares"
+        style="@style/Widget.AppTheme.LikedCheckBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:text="@string/iFooterLikes"
-        app:layout_constraintBottom_toBottomOf="@+id/ivLikes"
-        app:layout_constraintStart_toEndOf="@+id/ivLikes"
-        app:layout_constraintTop_toTopOf="@+id/ivLikes"
-        app:layout_constraintVertical_bias="0.6" />
-
-    <ImageView
-        android:id="@+id/ivFooterShares"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginLeft="4dp"
-        android:contentDescription="@string/sFooterShares"
-        app:layout_constraintBottom_toBottomOf="@+id/tvLikes"
-        app:layout_constraintStart_toEndOf="@+id/tvLikes"
-        app:layout_constraintTop_toTopOf="@+id/tvLikes"
-        app:layout_constraintVertical_bias="0.6"
-        app:srcCompat="@drawable/ic_baseline_share_24" />
-
-    <TextView
-        android:id="@+id/tvShares"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:text="@string/iFooterShares"
-        app:layout_constraintBottom_toBottomOf="@+id/ivFooterShares"
-        app:layout_constraintStart_toEndOf="@+id/ivFooterShares"
-        app:layout_constraintTop_toTopOf="@+id/ivFooterShares"
-        app:layout_constraintVertical_bias="0.4" />
+        android:contentDescription="@string/sShares"
+        app:icon="@drawable/ic_baseline_share_24"
+        app:layout_constraintStart_toEndOf="@+id/tbLikes"
+        app:layout_constraintTop_toBottomOf="@+id/tvPost"
+        tools:checked="false"
+        tools:text="XXX" />
 
     <ImageView
-        android:id="@+id/ivFooterViewes"
+        android:id="@+id/ivViewes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="@string/sFooterViewes"
-        app:layout_constraintBottom_toBottomOf="@+id/tvFooterViewes"
-        app:layout_constraintEnd_toStartOf="@+id/tvFooterViewes"
-        app:layout_constraintTop_toTopOf="@+id/tvFooterViewes"
+        android:contentDescription="@string/sViewes"
+        app:layout_constraintBottom_toBottomOf="@+id/tvViewes"
+        app:layout_constraintEnd_toStartOf="@+id/tvViewes"
+        app:layout_constraintTop_toTopOf="@+id/tvViewes"
         app:srcCompat="@drawable/ic_baseline_remove_red_eye_24" />
 
     <TextView
-        android:id="@+id/tvFooterViewes"
+        android:id="@+id/tvViewes"
         android:layout_width="29dp"
         android:layout_height="18dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:gravity="center"
-        android:text="@string/iFooterViewes"
+        android:text="@string/iViewes"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvPost" />
 

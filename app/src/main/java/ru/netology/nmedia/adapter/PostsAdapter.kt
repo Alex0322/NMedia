@@ -53,11 +53,19 @@ class PostViewHolder(
             tvAuthor.text = post.sAuthor
             tvTime.text = post.sPublished
             tvPost.text = post.sContent
-            ivLikes.setImageResource(
-                if (post.isLikedByMe) R.drawable.ic_baseline_favorite_24 else R.drawable.ic_baseline_favorite_border_24
-            )
 
-            ivMenu.setOnClickListener {
+            tbLikes.isChecked = post.isLikedByMe
+            tbLikes.text = AndroidUtils.getCountStr(post.nLikesCount)
+            tbLikes.setOnClickListener {
+                onInteractionListener.onLike(post)
+            }
+
+            tbShares.text = AndroidUtils.getCountStr(post.nSharesCount) + "(" + post.nSharesCount + ")"
+            tbShares.setOnClickListener {
+                onInteractionListener.onShare(post)
+            }
+
+            tbMenu.setOnClickListener {
                 PopupMenu(it.context, it).apply {
                     inflate(R.menu.options_post)
                     setOnMenuItemClickListener { item ->
@@ -76,14 +84,6 @@ class PostViewHolder(
                 }.show()
             }
 
-            tvLikes.text = AndroidUtils.getCountStr(post.nLikesCount)
-            tvShares.text = AndroidUtils.getCountStr(post.nSharesCount)
-            ivLikes.setOnClickListener {
-                onInteractionListener.onLike(post)
-            }
-            ivFooterShares.setOnClickListener {
-                onInteractionListener.onShare(post)
-            }
         }
     }
 }

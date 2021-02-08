@@ -31,6 +31,10 @@ class MainActivity : AppCompatActivity() {
                 viewModel.likeById(post.nId)
             }
 
+            override fun onShare(post: Post) {
+                viewModel.shareById(post.nId)
+            }
+
             override fun onRemove(post: Post) {
                 viewModel.removeById(post.nId)
             }

@@ -6,14 +6,16 @@
     <string name="sTitleTime">21 мая 18:36</string>
     <string name="sTitleMore">[ЗаголовокМеню]</string>
     <string name="sPostBody">Привет, это Нетология. Мы начинали с курсов об онлайн-маркетинге. Затем выросли в университет интернет-профессий: учили дизайнеров, аналитиков, программистов, менеджеров, маркетологов… Но обучать новым профессиям — это не предел. Мы продолжаем расти. Сегодня мы даём знания не только начинающим, но и тем, кто давно в профессии. Специалисты изучают новые инструменты, топ-менеджеры — получают степень MBA, руководители бизнеса — обучают своих сотрудников и обучаются сами. http://netolo.gy/fyb</string>
-    <string name="iFooterShares">0</string>
-    <string name="iFooterViewes">0</string>
-    <string name="iFooterLikes">0</string>
-    <string name="sFooterLikes">FooterLikes</string>
-    <string name="sFooterViewes">FooterViewes</string>
-    <string name="sFooterShares">FooterShares</string>
+    <string name="iShares">0</string>
+    <string name="iViewes">0</string>
+    <string name="iLikes">0</string>
+    <string name="sLikes">FooterLikes</string>
+    <string name="sViewes">FooterViewes</string>
+    <string name="sShares">FooterShares</string>
     <string name="sErrEmptyContent">Content cant be empty</string>
     <string name="sCancel">Cancel</string>
     <string name="sSave">Save</string>
     <string name="sPostText">Post Text</string>
+    <string name="sLike">Like</string>
+    <string name="sMenu">Menu</string>
 </resources>

@@ -78,10 +78,10 @@ class PostRepositoryInMemoryImpl : PostRepository {
     }
 
     override fun shareById(nId: Long) {
-        val posts = lsPosts.map {
+        lsPosts = lsPosts.map {
             if (it.nId == nId) it.copy(nSharesCount = it.nSharesCount + 10) else it
         }
-        ldPosts.value = posts
+        ldPosts.value = lsPosts
     }
 
     override fun removeById(nId: Long) {
